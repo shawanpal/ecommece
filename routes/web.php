@@ -13,4 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@homepage');
+Route::get('/', 'FrontendControllers\HomeController@index');
+Route::get('/login', 'FrontendControllers\AuthController@login');
+Route::post('/do-login', 'Auth\LoginController@userlogin');
+Route::get('/register', 'FrontendControllers\AuthController@register');
+Route::post('/do-register', 'Auth\RegisterController@userRegister');
