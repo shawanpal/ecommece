@@ -26,14 +26,27 @@
 <!-- section start -->
 <section class="login-page section-b-space">
     <div class="container">
+        @if (session('success'))
+        <div class="alert alert-success alert-no-border-radious">
+            {{ session('success') }}
+        </div>
+        @endif 
+        @if (session('error'))
+        <div class="alert alert-danger alert-no-border-radious">
+            {{ session('error') }}
+        </div>
+        @endif 
         <div class="row">
             <div class="col-lg-6">
                 <h3>Login</h3>
                 <div class="theme-card">
-                    <form class="theme-form" method="post" action="{{ url('do-login') }}">
+                    <form class="theme-form" method="post" action="{{ url('do-login') }}" id="userLogin">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Email" name="email" autocomplete="off">
+                            <input type="email" class="form-control" id="email" placeholder="Email" name="email" autocomplete="off" value="{{ old('email') }}">
+                            @if($errors->has('email'))
+                            <label class="error">{{ $errors->first('email') }}</label>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="review">Password</label>

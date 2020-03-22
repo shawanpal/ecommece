@@ -13,14 +13,23 @@
                 </div>
                 <div class="col-lg-6 text-right">
                     <ul class="header-dropdown">
-                        <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                        <li class="mobile-wishlist"><a href="{{ url('/wishlist') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
                         </li>
+                        @guest
                         <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i> My Account
                             <ul class="onhover-show-div">
                                 <li><a href="{{ url('/login') }}" data-lng="en">Login</a></li>
                                 <li><a href="{{ url('/register') }}" data-lng="es">Register</a></li>
                             </ul>
                         </li>
+                        @endguest
+                        @auth
+                        <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i> Welcome, {{ Auth::User()->first_name }}
+                            <ul class="onhover-show-div">
+                                <li><a href="{{ url('/logout') }}" data-lng="en">Logout</a></li>
+                            </ul>
+                        </li>
+                        @endauth
                     </ul>
                 </div>
             </div>
@@ -166,7 +175,7 @@
                             </div>
                         </div>
                         <div class="brand-logo">
-                            <a href="index.html"><img src="{{ url('public/assets/images/icon/logo.png') }}" class="img-fluid blur-up lazyload" alt=""></a>
+                            <a href="{{ url('/') }}"><img src="{{ url('public/assets/images/icon/'.getSiteData('logo')) }}" class="img-fluid blur-up lazyload" alt="Logo"></a>
                         </div>
                     </div>
                     <div class="menu-right pull-right">

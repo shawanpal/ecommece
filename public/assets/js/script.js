@@ -1,11 +1,11 @@
 /*-----------------------------------------------------------------------------------
-
+ 
  Template Name:Multikart
  Template URI: themes.pixelstrap.com/multikart
  Description: This is E-commerce website
  Author: Pixelstrap
  Author URI: https://themeforest.net/user/pixelstrap
-
+ 
  ----------------------------------------------------------------------------------- */
 // 01.Pre loader
 // 02.Tap on Top
@@ -34,14 +34,14 @@
 // 25.Tooltip
 
 
-(function($) {
+(function ($) {
     "use strict";
 
     /*=====================
      01.Pre loader
      ==========================*/
     $(window).on('load', function () {
-        setTimeout(function(){
+        setTimeout(function () {
             $('.loader_skeleton').fadeOut('slow');
             $('body').css({
                 'overflow': 'auto'
@@ -52,7 +52,7 @@
             'overflow': 'hidden'
         });
     });
-    $('#preloader').fadeOut('slow', function() {
+    $('#preloader').fadeOut('slow', function () {
         $(this).remove();
     });
 
@@ -60,14 +60,14 @@
     /*=====================  
      02.Tap on Top
      ==========================*/
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function () {
         if ($(this).scrollTop() > 600) {
             $('.tap-top').fadeIn();
         } else {
             $('.tap-top').fadeOut();
         }
     });
-    $('.tap-top').on('click', function() {
+    $('.tap-top').on('click', function () {
         $("html, body").animate({
             scrollTop: 0
         }, 600);
@@ -78,7 +78,7 @@
     /*=====================
      03. Age verify modal
      ==========================*/
-    $(window).on('load',function(){
+    $(window).on('load', function () {
         $('#ageModal').modal('show');
     });
 
@@ -89,22 +89,22 @@
      ==========================*/
     if ($(window).width() > '1200') {
         $('#hover-cls').hover(
-            function () {
+                function () {
                     $('.sm').addClass('hover-unset');
-            }
+                }
         )
 
     }
     if ($(window).width() > '1200') {
         $('#sub-menu > li').hover(
-            function () {
-                if($(this).children().hasClass('has-submenu')) {
-                    $(this).parents().find('nav').addClass('sidebar-unset');
+                function () {
+                    if ($(this).children().hasClass('has-submenu')) {
+                        $(this).parents().find('nav').addClass('sidebar-unset');
+                    }
+                },
+                function () {
+                    $(this).parents().find('nav').removeClass('sidebar-unset');
                 }
-            },
-            function(){
-                $(this).parents().find('nav').removeClass('sidebar-unset');
-            }
         )
     }
 
@@ -112,24 +112,24 @@
     /*=====================
      05. Image to background js
      ==========================*/
-    $(".bg-top" ).parent().addClass('b-top');
-    $(".bg-bottom" ).parent().addClass('b-bottom');
-    $(".bg-center" ).parent().addClass('b-center');
+    $(".bg-top").parent().addClass('b-top');
+    $(".bg-bottom").parent().addClass('b-bottom');
+    $(".bg-center").parent().addClass('b-center');
     $(".bg_size_content").parent().addClass('b_size_content');
-    $(".bg-img" ).parent().addClass('bg-size');
-    $(".bg-img.blur-up" ).parent().addClass('blur-up lazyload');
+    $(".bg-img").parent().addClass('bg-size');
+    $(".bg-img.blur-up").parent().addClass('blur-up lazyload');
 
-    jQuery('.bg-img').each(function() {
+    jQuery('.bg-img').each(function () {
 
         var el = $(this),
-            src = el.attr('src'),
-            parent = el.parent();
+                src = el.attr('src'),
+                parent = el.parent();
 
         parent.css({
             'background-image': 'url(' + src + ')',
             'background-size': 'cover',
             'background-position': 'center',
-            'display' : 'block'
+            'display': 'block'
         });
 
         el.hide();
@@ -139,21 +139,20 @@
     /*=====================
      06. Filter js
      ==========================*/
-    $(".filter-button").click(function(){
+    $(".filter-button").click(function () {
         $(this).addClass('active').siblings('.active').removeClass('active');
         var value = $(this).attr('data-filter');
-        if(value == "all")
+        if (value == "all")
         {
             $('.filter').show('1000');
-        }
-        else
+        } else
         {
-            $(".filter").not('.'+value).hide('3000');
-            $('.filter').filter('.'+value).show('3000');
+            $(".filter").not('.' + value).hide('3000');
+            $('.filter').filter('.' + value).show('3000');
         }
     });
 
-    $("#formButton").click(function(){
+    $("#formButton").click(function () {
         $("#form1").toggle();
     });
 
@@ -161,7 +160,7 @@
     /*=====================
      07. left offer toggle
      ==========================*/
-    $(".heading-right h3").click(function(){
+    $(".heading-right h3").click(function () {
         $(".offer-box").toggleClass("toggle-cls");
     });
 
@@ -170,10 +169,10 @@
      08. toggle nav
      ==========================*/
     $('.toggle-nav').on('click', function () {
-        $('.sm-horizontal').css("right","0px");
+        $('.sm-horizontal').css("right", "0px");
     });
-    $(".mobile-back").on('click', function (){
-        $('.sm-horizontal').css("right","-410px");
+    $(".mobile-back").on('click', function () {
+        $('.sm-horizontal').css("right", "-410px");
     });
 
 
@@ -215,21 +214,21 @@
     /*=====================
      10. Add to cart quantity Counter
      ==========================*/
-    $("button.add-button").click(function(){
+    $("button.add-button").click(function () {
         $(this).next().addClass("open");
         $(".qty-input").val('1');
     });
-    $('.quantity-right-plus').on('click',function(){
+    $('.quantity-right-plus').on('click', function () {
         var $qty = $(this).siblings(".qty-input");
         var currentVal = parseInt($qty.val());
         if (!isNaN(currentVal)) {
             $qty.val(currentVal + 1);
         }
     });
-    $('.quantity-left-minus').on('click',function(){
+    $('.quantity-left-minus').on('click', function () {
         var $qty = $(this).siblings(".qty-input");
-        var _val =  $($qty).val();
-        if(_val == '1') {
+        var _val = $($qty).val();
+        if (_val == '1') {
             var _removeCls = $(this).parents('.cart_qty');
             $(_removeCls).removeClass("open");
         }
@@ -262,20 +261,20 @@
     /*=====================
      12. Full slider
      ==========================*/
-    if ($(window).width() > 767){
+    if ($(window).width() > 767) {
         var $slider = $(".full-slider");
         $slider.
-        on('init', function () {
-            mouseWheel($slider);
-        }).
-        slick({
-            dots: true,
-            nav: false,
-            vertical: true,
-            infinite: false });
+                on('init', function () {
+                    mouseWheel($slider);
+                }).
+                slick({
+                    dots: true,
+                    nav: false,
+                    vertical: true,
+                    infinite: false});
 
         function mouseWheel($slider) {
-            $(window).on('wheel', { $slider: $slider }, mouseWheelHandler);
+            $(window).on('wheel', {$slider: $slider}, mouseWheelHandler);
         }
         function mouseWheelHandler(event) {
             event.preventDefault();
@@ -288,21 +287,20 @@
                 $slider.slick('slickPrev');
             }
         }
-    }
-    else{
+    } else {
         var $slider = $(".full-slider");
         $slider.
-        on('init', function () {
-            mouseWheel($slider);
-        }).
-        slick({
-            dots: true,
-            nav: false,
-            vertical: false,
-            infinite: false });
+                on('init', function () {
+                    mouseWheel($slider);
+                }).
+                slick({
+                    dots: true,
+                    nav: false,
+                    vertical: false,
+                    infinite: false});
 
         function mouseWheel($slider) {
-            $(window).on('wheel', { $slider: $slider }, mouseWheelHandler);
+            $(window).on('wheel', {$slider: $slider}, mouseWheelHandler);
         }
         function mouseWheelHandler(event) {
             event.preventDefault();
@@ -448,7 +446,7 @@
             {
                 breakpoint: 991,
                 settings: {
-                    slidesToShow:2,
+                    slidesToShow: 2,
                     slidesToScroll: 2
                 }
             },
@@ -480,7 +478,7 @@
             {
                 breakpoint: 767,
                 settings: {
-                    slidesToShow:2,
+                    slidesToShow: 2,
                     slidesToScroll: 2
                 }
             },
@@ -512,7 +510,7 @@
             {
                 breakpoint: 1200,
                 settings: {
-                    slidesToShow:2,
+                    slidesToShow: 2,
                     slidesToScroll: 2
                 }
             },
@@ -549,7 +547,7 @@
         autoplaySpeed: 5000,
         responsive: [
             {
-                breakpoint:991,
+                breakpoint: 991,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 2
@@ -706,7 +704,7 @@
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll:3
+                    slidesToScroll: 3
                 }
             },
             {
@@ -887,7 +885,7 @@
             centerMode: false,
             focusOnSelect: true
         });
-    }else{
+    } else {
         $('.slider-right-nav').slick({
             vertical: false,
             verticalSwiping: false,
@@ -965,7 +963,7 @@
                     }
                 },
                 {
-                    breakpoint:991,
+                    breakpoint: 991,
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2
@@ -1055,7 +1053,7 @@
             slidesToScroll: 1,
             responsive: [
                 {
-                    breakpoint:991,
+                    breakpoint: 991,
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2
@@ -1076,69 +1074,68 @@
     /*=====================
      16 .category page
      ==========================*/
-    $('.collapse-block-title').on('click', function(e) {
+    $('.collapse-block-title').on('click', function (e) {
         e.preventDefault;
         var speed = 300;
         var thisItem = $(this).parent(),
-            nextLevel = $(this).next('.collection-collapse-block-content');
-        if (thisItem.hasClass('open')){
+                nextLevel = $(this).next('.collection-collapse-block-content');
+        if (thisItem.hasClass('open')) {
             thisItem.removeClass('open');
             nextLevel.slideUp(speed);
-        }
-        else {
+        } else {
             thisItem.addClass('open');
             nextLevel.slideDown(speed);
         }
     });
-    $('.color-selector ul li').on('click', function(e) {
+    $('.color-selector ul li').on('click', function (e) {
         $(".color-selector ul li").removeClass("active");
         $(this).addClass("active");
     });
 //list layout view
-    $('.list-layout-view').on('click', function(e) {
+    $('.list-layout-view').on('click', function (e) {
         $('.collection-grid-view').css('opacity', '0');
-        $(".product-wrapper-grid").css("opacity","0.2");
-        $('.shop-cart-ajax-loader').css("display","block");
+        $(".product-wrapper-grid").css("opacity", "0.2");
+        $('.shop-cart-ajax-loader').css("display", "block");
         $('.product-wrapper-grid').addClass("list-view");
         $(".product-wrapper-grid").children().children().removeClass();
         $(".product-wrapper-grid").children().children().addClass("col-lg-12");
-        setTimeout(function(){
-            $(".product-wrapper-grid").css("opacity","1");
-            $('.shop-cart-ajax-loader').css("display","none");
+        setTimeout(function () {
+            $(".product-wrapper-grid").css("opacity", "1");
+            $('.shop-cart-ajax-loader').css("display", "none");
         }, 500);
     });
 //grid layout view
-    $('.grid-layout-view').on('click', function(e) {
+    $('.grid-layout-view').on('click', function (e) {
         $('.collection-grid-view').css('opacity', '1');
         $('.product-wrapper-grid').removeClass("list-view");
         $(".product-wrapper-grid").children().children().removeClass();
         $(".product-wrapper-grid").children().children().addClass("col-lg-3");
 
     });
-    $('.product-2-layout-view').on('click', function(e) {
-        if($('.product-wrapper-grid').hasClass("list-view")) {}
-        else{
+    $('.product-2-layout-view').on('click', function (e) {
+        if ($('.product-wrapper-grid').hasClass("list-view")) {
+        } else {
             $(".product-wrapper-grid").children().children().removeClass();
             $(".product-wrapper-grid").children().children().addClass("col-lg-6");
         }
     });
-    $('.product-3-layout-view').on('click', function(e) {
-        if($('.product-wrapper-grid').hasClass("list-view")) {}
-        else{
+    $('.product-3-layout-view').on('click', function (e) {
+        if ($('.product-wrapper-grid').hasClass("list-view")) {
+        } else {
             $(".product-wrapper-grid").children().children().removeClass();
             $(".product-wrapper-grid").children().children().addClass("col-lg-4");
         }
     });
-    $('.product-4-layout-view').on('click', function(e) {
-        if($('.product-wrapper-grid').hasClass("list-view")) {}
-        else{
+    $('.product-4-layout-view').on('click', function (e) {
+        if ($('.product-wrapper-grid').hasClass("list-view")) {
+        } else {
             $(".product-wrapper-grid").children().children().removeClass();
             $(".product-wrapper-grid").children().children().addClass("col-lg-3");
         }
     });
-    $('.product-6-layout-view').on('click', function(e) {
-        if($('.product-wrapper-grid').hasClass("list-view")) {}
-        else{
+    $('.product-6-layout-view').on('click', function (e) {
+        if ($('.product-wrapper-grid').hasClass("list-view")) {
+        } else {
             $(".product-wrapper-grid").children().children().removeClass();
             $(".product-wrapper-grid").children().children().addClass("col-lg-2");
         }
@@ -1148,23 +1145,23 @@
     /*=====================
      17.filter sidebar js
      ==========================*/
-    $('.sidebar-popup').on('click', function(e) {
+    $('.sidebar-popup').on('click', function (e) {
         $('.open-popup').toggleClass('open');
-        $('.collection-filter').css("left","-15px");
+        $('.collection-filter').css("left", "-15px");
     });
-    $('.filter-btn').on('click', function(e) {
-        $('.collection-filter').css("left","-15px");
+    $('.filter-btn').on('click', function (e) {
+        $('.collection-filter').css("left", "-15px");
     });
-    $('.filter-back').on('click', function(e) {
-        $('.collection-filter').css("left","-365px");
+    $('.filter-back').on('click', function (e) {
+        $('.collection-filter').css("left", "-365px");
         $('.sidebar-popup').trigger('click');
     });
 
-    $('.account-sidebar').on('click', function(e) {
-        $('.dashboard-left').css("left","0");
+    $('.account-sidebar').on('click', function (e) {
+        $('.dashboard-left').css("left", "0");
     });
-    $('.filter-back').on('click', function(e) {
-        $('.dashboard-left').css("left","-365px");
+    $('.filter-back').on('click', function (e) {
+        $('.dashboard-left').css("left", "-365px");
     });
 
     $(function () {
@@ -1187,7 +1184,7 @@
             icon: 'fa fa-check',
             title: 'Success!',
             message: 'Item Successfully added to your cart'
-        },{
+        }, {
             element: 'body',
             position: null,
             type: "success",
@@ -1208,15 +1205,15 @@
             },
             icon_type: 'class',
             template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-            '<span data-notify="icon"></span> ' +
-            '<span data-notify="title">{1}</span> ' +
-            '<span data-notify="message">{2}</span>' +
-            '<div class="progress" data-notify="progressbar">' +
-            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-            '</div>' +
-            '<a href="{3}" target="{4}" data-notify="url"></a>' +
-            '</div>'
+                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                    '<span data-notify="icon"></span> ' +
+                    '<span data-notify="title">{1}</span> ' +
+                    '<span data-notify="message">{2}</span>' +
+                    '<div class="progress" data-notify="progressbar">' +
+                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                    '</div>' +
+                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                    '</div>'
         });
     });
 
@@ -1230,7 +1227,7 @@
             icon: 'fa fa-check',
             title: 'Success!',
             message: 'Item Successfully added in wishlist'
-        },{
+        }, {
             element: 'body',
             position: null,
             type: "info",
@@ -1251,15 +1248,15 @@
             },
             icon_type: 'class',
             template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-            '<span data-notify="icon"></span> ' +
-            '<span data-notify="title">{1}</span> ' +
-            '<span data-notify="message">{2}</span>' +
-            '<div class="progress" data-notify="progressbar">' +
-            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-            '</div>' +
-            '<a href="{3}" target="{4}" data-notify="url"></a>' +
-            '</div>'
+                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                    '<span data-notify="icon"></span> ' +
+                    '<span data-notify="title">{1}</span> ' +
+                    '<span data-notify="message">{2}</span>' +
+                    '<div class="progress" data-notify="progressbar">' +
+                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                    '</div>' +
+                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                    '</div>'
         });
     });
 
@@ -1267,12 +1264,12 @@
     /*=====================
      20. Color Picker
      ==========================*/
-     /* var color_picker1 = document.getElementById("ColorPicker1").value;
+    /* var color_picker1 = document.getElementById("ColorPicker1").value;
      document.getElementById("ColorPicker1").onchange = function() {
-         color_picker1 = this.value;
-         document.documentElement.style.setProperty('--theme-deafult', color_picker1);
+     color_picker1 = this.value;
+     document.documentElement.style.setProperty('--theme-deafult', color_picker1);
      }; */
-     
+
 
 })(jQuery);
 
@@ -1280,39 +1277,39 @@
 /*------------------------------
  21. RTL & Dark Light
  -------------------------------*/
-$("#ltr_btn").click(function(){
-     $('body').addClass('ltr');
+$("#ltr_btn").click(function () {
+    $('body').addClass('ltr');
     $('body').removeClass('rtl');
 });
-$("#rtl_btn").click(function(){
-     $('body').addClass('rtl');
+$("#rtl_btn").click(function () {
+    $('body').addClass('rtl');
     $('body').removeClass('ltr');
 });
-$(".setting_buttons li").click(function(){
+$(".setting_buttons li").click(function () {
     $(this).addClass('active').siblings().removeClass('active');
 });
-$(".color-box li").click(function(){
+$(".color-box li").click(function () {
     $(this).addClass('active').siblings().removeClass('active');
 });
 
 // dark & light
 /* (function() {
-    $('<div class="sidebar-btn dark-light-btn">' +
-        '<div class="dark-light">'+
-        '<div class="theme-layout-version">Dark' +
-        '</div>' +
-        '</div>' +
-        '</div>').appendTo($('body'));
-})(); */
+ $('<div class="sidebar-btn dark-light-btn">' +
+ '<div class="dark-light">'+
+ '<div class="theme-layout-version">Dark' +
+ '</div>' +
+ '</div>' +
+ '</div>').appendTo($('body'));
+ })(); */
 
 var body_event = $("body");
-body_event.on("click", ".theme-layout-version" , function(){
+body_event.on("click", ".theme-layout-version", function () {
     $(this).toggleClass('dark');
     $('body').removeClass('dark');
-    if($('.theme-layout-version').hasClass('dark')){
+    if ($('.theme-layout-version').hasClass('dark')) {
         $('.theme-layout-version').text('Light');
         $('body').addClass('dark');
-    }else{
+    } else {
         $('#theme-dark').remove();
         $('.theme-layout-version').text('Dark');
     }
@@ -1330,7 +1327,7 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").classList.remove('open-side');
 }
-$(function() {
+$(function () {
     $('#main-menu').smartmenus({
         subMenusSubOffsetX: 1,
         subMenusSubOffsetY: -8
@@ -1379,15 +1376,95 @@ function closeCart() {
 /*=====================
  25.Tooltip
  ==========================*/
-$(window).on('load', function() {
+$(window).on('load', function () {
     $('[data-toggle="tooltip"]').tooltip()
 });
 
+/*=====================
+ Jquery Validation
+ ==========================*/
+$(function () {
+    $("#userReg").validate({
+        rules: {
+            first_name: "required",
+            last_name: "required",
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 8
+            }
+        },
+        messages: {
+            first_name: "Please enter your firstname",
+            last_name: "Please enter your lastname",
+            email: "Please enter a valid email address",
+            password: {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 8 characters long"
+            }
+        }
+    });
+    $("#userLogin").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 8
+            }
+        },
+        messages: {
+            email: "Please enter a valid email address",
+            password: {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 8 characters long"
+            }
+        }
+    });
+});
 
+/*=====================
+ Custom Functions
+ ==========================*/
 
+function removeFromWishlist(encid) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
+    $.ajax({
+        type: 'POST',
+        url: 'delete-wishproduct',
+        data: {'wl_id': encid},
+        success: function (data) {
+            $('tr[data-id = ' + encid + ']').fadeOut();
+        }
+    });
+}
 
+function cartFromWishlist(encid) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-
+    $.ajax({
+        type: 'POST',
+        url: 'cart-wishproduct',
+        data: {'wl_id': encid},
+        success: function (data) {
+            //$('tr[data-id = ' + encid + ']').fadeOut();
+            alert(data);
+        }
+    });
+}
 
 

@@ -3,7 +3,7 @@ namespace App\Http\Controllers\FrontendControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Site_details as SiteDetails;
+use App\Site_detail as SiteDetails;
 
 class HomeController extends Controller {
     

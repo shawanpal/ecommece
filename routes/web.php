@@ -18,3 +18,7 @@ Route::get('/login', 'FrontendControllers\AuthController@login');
 Route::post('/do-login', 'Auth\LoginController@userlogin');
 Route::get('/register', 'FrontendControllers\AuthController@register');
 Route::post('/do-register', 'Auth\RegisterController@userRegister');
+Route::get('/logout', 'FrontendControllers\AuthController@logout');
+Route::get('/wishlist', 'FrontendControllers\WishlistController@wishlist');
+Route::post('/delete-wishproduct', 'FrontendControllers\WishlistController@deleteWishproduct');
+Route::post('/cart-wishproduct', 'FrontendControllers\WishlistController@cartWishproduct');

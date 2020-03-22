@@ -7,8 +7,9 @@
         <meta name="description" content="multikart">
         <meta name="keywords" content="multikart">
         <meta name="author" content="multikart">
-        <link rel="icon" href="../assets/images/favicon/1.png" type="image/x-icon">
-        <link rel="shortcut icon" href="../assets/images/favicon/1.png" type="image/x-icon">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="icon" href="{{ url('public/assets/images/favicon/'.getSiteData('favicon')) }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ url('public/assets/images/favicon/'.getSiteData('favicon')) }}" type="image/x-icon">
         <title>{{ getSiteData('title') }} - {{ getSiteData('tagline') }}</title>
 
         <!--Google font-->
@@ -44,10 +45,16 @@
                         </div>
                         <div class="col-lg-6 text-right">
                             <ul class="header-dropdown">
-                                <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                <li class="mobile-wishlist"><a href="{{ url('/wishlist') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                 </li>
+                                @guest
                                 <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i> My Account
                                 </li>
+                                @endguest
+                                @auth
+                                <li class="onhover-dropdown mobile-account"> <i class="fa fa-user" aria-hidden="true"></i> Welcome, {{ Auth::User()->first_name }}
+                                </li>
+                                @endauth
                             </ul>
                         </div>
                     </div>
@@ -66,7 +73,7 @@
                                         </a>
                                     </div>
                                     <div class="brand-logo">
-                                        <a href="index.html"><img src="{{ url('public/assets/images/icon/logo.png') }}" class="img-fluid blur-up lazyload" alt=""></a>
+                                        <a href="{{ url('/') }}"><img src="{{ url('public/assets/images/icon/'.getSiteData('logo')) }}" class="img-fluid blur-up lazyload" alt="Logo"></a>
                                     </div>
                                 </div>
                                 <div class="menu-right pull-right">
@@ -298,41 +305,6 @@
         </div>
         <!-- Quick-view modal popup end-->
 
-        <!-- exit modal popup start-->
-        <div class="modal fade bd-example-modal-lg theme-modal exit-modal" id="exit_popup" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body modal1">
-                        <div class="container-fluid p-0">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="modal-bg">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <div class="media">
-                                            <img src="{{ url('public/assets/images/stop.png') }}" class="stop img-fluid blur-up lazyload mr-3" alt="">
-                                            <div class="media-body text-left align-self-center">
-                                                <div>
-                                                    <h2>wait!</h2>
-                                                    <h4>We want to give you
-                                                        <b>10% discount</b>
-                                                        <span>for your first order</span>
-                                                    </h4>
-                                                    <h5>Use discount code at checkout</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Add to cart modal popup end-->
-
         <!-- tap to top -->
         <div class="tap-top top-cls">
             <div>
@@ -362,6 +334,8 @@
         <script src="{{ url('public/assets/js/bootstrap-notify.min.js') }}"></script>
         <!-- Fly cart js-->
         <script src="{{ url('public/assets/js/fly-cart.js') }}"></script>
+        <!-- Jquery validate js-->
+        <script src="{{ url('public/assets/js/jquery.validate.min.js') }}"></script>
         <!-- Theme js-->
         <script src="{{ url('public/assets/js/script.js') }}"></script>
         <script>

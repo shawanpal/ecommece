@@ -1,6 +1,6 @@
 <?php
 
-use App\Site_details as SiteDetails;
+use App\Site_detail as SiteDetails;
 use Illuminate\Database\Eloquent\Collection;
 
 if (!function_exists('getSiteData')) {

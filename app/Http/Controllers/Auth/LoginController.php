@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller {
@@ -16,7 +19,21 @@ class LoginController extends Controller {
 
     public function userlogin(Request $request) {
         $validator = $this->validator($request->input());
-        dd($validator);
+        if ($validator->fails()) {
+            return Redirect::back()
+                            ->withErrors($validator)
+                            ->withInput();
+        } else {
+            $email = $request->input('email');
+            $password = $request->input('password');
+            $credentials = array('email' => $email, 'password' => $password, 'is_active' => 1, 'is_deleted' => 0);
+            
+            if (Auth::attempt($credentials)) {
+                return Redirect('/');
+            } else {
+                return Redirect::back()->with('error', 'Wrong Credientials!');
+            }
+        }
     }
 
 }
