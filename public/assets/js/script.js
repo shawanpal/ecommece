@@ -1461,8 +1461,8 @@ function cartFromWishlist(encid) {
         url: 'cart-wishproduct',
         data: {'wl_id': encid},
         success: function (data) {
-            //$('tr[data-id = ' + encid + ']').fadeOut();
-            alert(data);
+            $('tr[data-id = ' + encid + ']').html('');
+            $('tr[data-id = ' + encid + ']').html('<td colspan="5">This product add to cart !</td>');
         }
     });
 }
