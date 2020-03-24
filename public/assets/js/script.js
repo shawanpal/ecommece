@@ -1467,4 +1467,28 @@ function cartFromWishlist(encid) {
     });
 }
 
+$(function () {
+    $('.color-variant li').click(function(){
+        $('.color-variant li').removeClass('selected');
+        $(this).addClass('selected');
+        $('input[name="variation_color"]').val($(this).attr('id'));
+        $('#variation-charges').css('display','inline-block');
+        var cost = $(this).data('price');
+        var prePrice = parseInt($('#extra-price').text());
+        if(prePrice == 0){
+            $('#extra-price').text(cost);
+            Cookies.set('color', cost);
+        }else{
+            var preColor = Cookies.get('color');
+            alert(preColor);
+            //var newCost = (prePrice - preColor) + cost;
+            //$('#extra-price').text(newCost);
+        }
+    });
+    $('.size-box li').click(function(){
+        $('.size-box li').removeClass('active');
+        $(this).addClass('active');
+        $('input[name="variation_size"]').val($(this).attr('id'));
+    });
+});
 

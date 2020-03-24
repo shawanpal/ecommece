@@ -456,7 +456,9 @@ class ComposerStaticInit152ce5a13261d221230ec8016fbe3b37
     );
 
     public static $classMap = array (
+        'App\\Attribute' => __DIR__ . '/../..' . '/app/Attribute.php',
         'App\\Cart' => __DIR__ . '/../..' . '/app/Cart.php',
+        'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -464,6 +466,7 @@ class ComposerStaticInit152ce5a13261d221230ec8016fbe3b37
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FrontendControllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontendControllers/AuthController.php',
         'App\\Http\\Controllers\\FrontendControllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontendControllers/HomeController.php',
+        'App\\Http\\Controllers\\FrontendControllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontendControllers/ProductController.php',
         'App\\Http\\Controllers\\FrontendControllers\\WishlistController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontendControllers/WishlistController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -473,6 +476,7 @@ class ComposerStaticInit152ce5a13261d221230ec8016fbe3b37
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
