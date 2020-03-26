@@ -108,7 +108,7 @@
                                             @else
                                                 @php $active = ''; @endphp
                                             @endif
-                                            <li id="{{ $variation->variations_value }}" class="{{ $active }}"><a>{{ $variation->variations_value }}</a></li>
+                                            <li id="{{ $variation->variations_value }}" class="{{ $active }}" data-price="{{ $variation->variations_cost }}"><a>{{ $variation->variations_value }}</a></li>
                                         @endif
                                     @endforeach
                                 </ul>
@@ -120,7 +120,9 @@
                                     <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span></div>
                             </div>
                         </div>
-                        <div class="product-buttons"><a href="#" data-toggle="modal" data-target="#addtocart" class="btn btn-solid">add to cart</a> <a href="#" class="btn btn-solid">buy now</a>
+                        <input type="hidden" name="enc_id" value="{{ Crypt::encryptString($product->id) }}">
+                        <input type="hidden" name="base_url" value="{{ url('/') }}">
+                        <div class="product-buttons"><a onclick="addToCart()" class="btn btn-solid">add to cart</a> <a href="#" class="btn btn-solid">buy now</a>
                         </div>
                         @if(getProductData($product->id , 'short_description') != '')
                         <div class="border-product">

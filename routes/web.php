@@ -22,5 +22,5 @@ Route::get('/logout', 'FrontendControllers\AuthController@logout');
 Route::get('/wishlist', 'FrontendControllers\WishlistController@wishlist');
 Route::post('/delete-wishproduct', 'FrontendControllers\WishlistController@deleteWishproduct');
 Route::post('/cart-wishproduct', 'FrontendControllers\WishlistController@cartWishproduct');
-
 Route::get('/shop/product/{alias}', 'FrontendControllers\ProductController@singleProduct');
+Route::post('/add-to-cart', 'FrontendControllers\ProductController@addToCart');

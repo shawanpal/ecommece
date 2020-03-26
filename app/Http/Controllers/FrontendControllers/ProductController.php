@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\FrontendControllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Product;
 
@@ -16,6 +18,29 @@ class ProductController extends Controller {
         } else {
             return view('frontend.product', $data);
         }
+    }
+
+    public function addToCart(Request $request) {
+
+        $product_id = Crypt::decryptString($request->input('encID'));
+        $variation_color = $request->input('variation_color');
+        $variation_size = $request->input('variation_size');
+        if (Auth::check()) {
+            $userID = Auth::User()->id;
+        } else {
+            $userID = '';
+        }
+        $ip = $request->ip();
+        $addtocart = Cart::create([
+                    'product_id' => $product_id,
+                    'user_id' => $userID,
+                    'quantity' => 1,
+                    'ip' => $ip,
+                    'variation' => '',
+                    'cart_from' => 'wishlist',
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
+        ]);
     }
 
 }

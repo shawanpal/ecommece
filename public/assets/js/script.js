@@ -1468,27 +1468,65 @@ function cartFromWishlist(encid) {
 }
 
 $(function () {
-    $('.color-variant li').click(function(){
+    $('.color-variant li').click(function () {
         $('.color-variant li').removeClass('selected');
         $(this).addClass('selected');
         $('input[name="variation_color"]').val($(this).attr('id'));
-        $('#variation-charges').css('display','inline-block');
+        $('#variation-charges').css('display', 'inline-block');
         var cost = $(this).data('price');
         var prePrice = parseInt($('#extra-price').text());
-        if(prePrice == 0){
+        if (prePrice == 0) {
             $('#extra-price').text(cost);
-            Cookies.set('color', cost);
-        }else{
-            var preColor = Cookies.get('color');
-            alert(preColor);
-            //var newCost = (prePrice - preColor) + cost;
-            //$('#extra-price').text(newCost);
+            localStorage.setItem('color', cost);
+        } else {
+            var preColor = localStorage.getItem("color");
+            if (preColor == null) {
+                preColor = 0;
+            }
+            var newCost = (prePrice - preColor) + cost;
+            $('#extra-price').text(newCost);
+            localStorage.setItem('color', cost);
         }
     });
-    $('.size-box li').click(function(){
+    $('.size-box li').click(function () {
         $('.size-box li').removeClass('active');
         $(this).addClass('active');
         $('input[name="variation_size"]').val($(this).attr('id'));
+        $('#variation-charges').css('display', 'inline-block');
+        var cost = $(this).data('price');
+        var prePrice = parseInt($('#extra-price').text());
+        if (prePrice == 0) {
+            $('#extra-price').text(cost);
+            localStorage.setItem('size', cost);
+        } else {
+            var preSize = localStorage.getItem("size");
+            if (preSize == null) {
+                preSize = 0;
+            }
+            var newCost = (prePrice - preSize) + cost;
+            $('#extra-price').text(newCost);
+            localStorage.setItem('size', cost);
+        }
     });
 });
 
+function addToCart() {
+    var encID = $('input[name="enc_id"]').val();
+    var variation_color = $('input[name="variation_color"]').val();
+    var variation_size = $('input[name="variation_size"]').val();
+    var base = $('input[name="base_url"]').val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type: 'POST',
+        url: base+'/add-to-cart',
+        data: {'encID': encID, 'variation_color': variation_color, 'variation_size': variation_size},
+        success: function (data) {
+            alert(data);
+        }
+    });
+}

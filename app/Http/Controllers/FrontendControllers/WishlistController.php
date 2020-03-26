@@ -47,6 +47,7 @@ class WishlistController extends Controller {
                         'user_id' => $userID,
                         'quantity' => 1,
                         'ip' => $ip,
+                        'variation' => '',
                         'cart_from' => 'wishlist',
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s'),

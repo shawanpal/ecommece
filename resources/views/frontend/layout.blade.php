@@ -305,6 +305,53 @@
         </div>
         <!-- Quick-view modal popup end-->
 
+
+        <!-- Add to cart modal popup start-->
+        <div class="modal fade bd-example-modal-lg theme-modal cart-modal" id="addtocart" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body modal1">
+                        <div class="container-fluid p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="modal-bg addtocart">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <div class="media">
+                                            <a href="#">
+                                                <img class="img-fluid blur-up lazyload pro-img"
+                                                     src="{{ url('public/assets/images/products/28.jpg') }}" alt="">
+                                            </a>
+                                            <div class="media-body align-self-center text-center">
+                                                <a>
+                                                    <h6>
+                                                        <i class="fa fa-check"></i>Item
+                                                        <span>men full sleeves</span>
+                                                        <span> successfully added to your Cart</span>
+                                                    </h6>
+                                                </a>
+                                                <div class="buttons">
+                                                    <a href="#" class="view-cart btn btn-solid">Your cart</a>
+                                                    <a href="#" class="continue btn btn-solid">Continue shopping</a>
+                                                </div>
+
+                                                <div class="upsell_payment">
+                                                    <img src="{{ url('public/assets/images/'.getSiteData('cart_payment')) }}" class="img-fluid blur-up lazyload" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add to cart modal popup end-->
+
         <!-- tap to top -->
         <div class="tap-top top-cls">
             <div>
@@ -339,19 +386,19 @@
         <!-- Theme js-->
         <script src="{{ url('public/assets/js/script.js') }}"></script>
         <script>
-            $(window).on('load', function () {
-                setTimeout(function () {
-                    $('#exampleModal').modal('show');
-                }, 2500);
-            });
+                                                        $(window).on('load', function () {
+                                                            setTimeout(function () {
+                                                                $('#exampleModal').modal('show');
+                                                            }, 2500);
+                                                        });
 
-            function openSearch() {
-                document.getElementById("search-overlay").style.display = "block";
-            }
+                                                        function openSearch() {
+                                                            document.getElementById("search-overlay").style.display = "block";
+                                                        }
 
-            function closeSearch() {
-                document.getElementById("search-overlay").style.display = "none";
-            }
+                                                        function closeSearch() {
+                                                            document.getElementById("search-overlay").style.display = "none";
+                                                        }
         </script>
     </body>
 
