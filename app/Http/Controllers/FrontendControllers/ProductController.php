@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Cart;
+use App\Wishlist;
 
 class ProductController extends Controller {
 
@@ -23,8 +25,11 @@ class ProductController extends Controller {
     public function addToCart(Request $request) {
 
         $product_id = Crypt::decryptString($request->input('encID'));
+        $quantity = $request->input('quantity');
         $variation_color = $request->input('variation_color');
         $variation_size = $request->input('variation_size');
+        $variation = json_encode(array($variation_color, $variation_size));
+
         if (Auth::check()) {
             $userID = Auth::User()->id;
         } else {
@@ -34,13 +39,52 @@ class ProductController extends Controller {
         $addtocart = Cart::create([
                     'product_id' => $product_id,
                     'user_id' => $userID,
-                    'quantity' => 1,
+                    'quantity' => $quantity,
                     'ip' => $ip,
-                    'variation' => '',
-                    'cart_from' => 'wishlist',
+                    'variation' => $variation,
+                    'cart_from' => 'product',
                     'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
         ]);
+        $product = Product::where(['id' => $product_id])
+                ->first();
+        $imgs = json_decode($product->images);
+        $firstimg = $imgs[0];
+        $model = '<a href="#">
+                    <img class="img-fluid blur-up lazyload pro-img" src="' . url('public/assets/images/products/' . $firstimg) . '" alt="">
+                </a>
+                <div class="media-body align-self-center text-center">
+                    <a>
+                        <h6>
+                            <i class="fa fa-check"></i>Item <span>' . $product->title . '</span> <span> successfully added to your Cart</span>
+                        </h6>
+                    </a>
+                    <div class="buttons">
+                        <a href="' . url('/cart') . '" class="view-cart btn btn-solid">Your cart</a>
+                        <a href="' . url('/') . '" class="continue btn btn-solid">Continue shopping</a>
+                    </div>
+                    <div class="upsell_payment">
+                        <img src="' . url('public/assets/images/' . getSiteData('cart_payment')) . '" class="img-fluid blur-up lazyload" alt="">
+                    </div>
+                </div>';
+        echo $model;
+    }
+
+    public function addToWishlist(Request $request) {
+        if (Auth::check()) {
+            $userID = Auth::User()->id;
+            $product_id = Crypt::decryptString($request->input('encID'));
+            $addtowishlist = Wishlist::create([
+                        'user_id' => $userID,
+                        'product_id' => $product_id,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s')
+            ]);
+            echo 1;
+        } else {
+            echo 0;
+        }
+        die();
     }
 
 }

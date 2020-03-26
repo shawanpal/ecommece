@@ -1515,6 +1515,7 @@ function addToCart() {
     var variation_color = $('input[name="variation_color"]').val();
     var variation_size = $('input[name="variation_size"]').val();
     var base = $('input[name="base_url"]').val();
+    var quantity = $('input[name="quantity"]').val();
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1523,10 +1524,35 @@ function addToCart() {
 
     $.ajax({
         type: 'POST',
-        url: base+'/add-to-cart',
-        data: {'encID': encID, 'variation_color': variation_color, 'variation_size': variation_size},
+        url: base + '/add-to-cart',
+        data: {'encID': encID, 'quantity': quantity, 'variation_color': variation_color, 'variation_size': variation_size},
         success: function (data) {
-            alert(data);
+            $('#addto-cart-content').html(data);
+            $('#addtocart').modal('show');
+        }
+    });
+}
+
+function addToWishlist() {
+    var encID = $('input[name="enc_id"]').val();
+    var base = $('input[name="base_url"]').val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: base + '/add-to-wishlist',
+        data: {'encID': encID},
+        success: function (data) {
+            if (data == 0) {
+                $('#nologinaddtowishlist').modal('show');
+            } else {
+                var html = '<div class="alert alert-success alert-no-border-radious">This product add to wishlist !</div>';
+                $('#retmsg').html(html);
+                $('#retmsg .alert').css({'margin-top': '30px', 'border-radius': '0px'});
+            }
         }
     });
 }

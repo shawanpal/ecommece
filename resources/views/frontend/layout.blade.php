@@ -319,26 +319,41 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                        <div class="media">
-                                            <a href="#">
-                                                <img class="img-fluid blur-up lazyload pro-img"
-                                                     src="{{ url('public/assets/images/products/28.jpg') }}" alt="">
-                                            </a>
+                                        <div class="media" id="addto-cart-content">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add to cart modal popup end-->
+
+        <!-- Without Login Add to wishlist modal popup start-->
+        <div class="modal fade bd-example-modal-lg theme-modal wishlist-modal" id="nologinaddtowishlist" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body modal1">
+                        <div class="container-fluid p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="modal-bg addtocart">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <div class="media" id="addto-cart-content">
                                             <div class="media-body align-self-center text-center">
                                                 <a>
                                                     <h6>
-                                                        <i class="fa fa-check"></i>Item
-                                                        <span>men full sleeves</span>
-                                                        <span> successfully added to your Cart</span>
+                                                        Please login to add this product in wishlist.
                                                     </h6>
                                                 </a>
                                                 <div class="buttons">
-                                                    <a href="#" class="view-cart btn btn-solid">Your cart</a>
-                                                    <a href="#" class="continue btn btn-solid">Continue shopping</a>
-                                                </div>
-
-                                                <div class="upsell_payment">
-                                                    <img src="{{ url('public/assets/images/'.getSiteData('cart_payment')) }}" class="img-fluid blur-up lazyload" alt="">
+                                                    <a href="{{ url('/login') }}" class="view-cart btn btn-solid">Login</a>
+                                                    <a href="{{ url('/register') }}" class="continue btn btn-solid">Register</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -350,7 +365,7 @@
                 </div>
             </div>
         </div>
-        <!-- Add to cart modal popup end-->
+        <!-- Without Login Add to wishlist modal popup end-->
 
         <!-- tap to top -->
         <div class="tap-top top-cls">

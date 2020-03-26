@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-6 rtl-text">
                     <div class="product-right">
                         <h2 class="mb-0">{{ $product->title }}</h2>
@@ -65,16 +65,16 @@
                         @endphp
                         <ul class="color-variant">
                             @foreach ($variations as $variation)
-                                @if($variation->variations_id == 1)
-                                    @if($variation->variations_cost == 0)
-                                        @php $active = 'selected'; @endphp
-                                        <input type="hidden" name="variation_color" value="{{ $variation->variations_value }}">
-                                    @else
-                                        @php $active = ''; @endphp
-                                    @endif
-                                    <li id="{{ $variation->variations_value }}" class="{{ $active }}" style="background: {{ $variation->variations_value }}" data-price="{{ $variation->variations_cost }}"></li>
-                                    
-                                @endif
+                            @if($variation->variations_id == 1)
+                            @if($variation->variations_cost == 0)
+                            @php $active = 'selected'; @endphp
+                            <input type="hidden" name="variation_color" value="{{ $variation->variations_value }}">
+                            @else
+                            @php $active = ''; @endphp
+                            @endif
+                            <li id="{{ $variation->variations_value }}" class="{{ $active }}" style="background: {{ $variation->variations_value }}" data-price="{{ $variation->variations_cost }}"></li>
+
+                            @endif
                             @endforeach
                         </ul>
                         <div class="product-description border-product">
@@ -101,15 +101,15 @@
                             <div class="size-box">
                                 <ul>
                                     @foreach ($variations as $variation)
-                                        @if($variation->variations_id == 2)
-                                            @if($variation->variations_cost == 0)
-                                                @php $active = 'active'; @endphp
-                                                <input type="hidden" name="variation_size" value="{{ $variation->variations_value }}">
-                                            @else
-                                                @php $active = ''; @endphp
-                                            @endif
-                                            <li id="{{ $variation->variations_value }}" class="{{ $active }}" data-price="{{ $variation->variations_cost }}"><a>{{ $variation->variations_value }}</a></li>
-                                        @endif
+                                    @if($variation->variations_id == 2)
+                                    @if($variation->variations_cost == 0)
+                                    @php $active = 'active'; @endphp
+                                    <input type="hidden" name="variation_size" value="{{ $variation->variations_value }}">
+                                    @else
+                                    @php $active = ''; @endphp
+                                    @endif
+                                    <li id="{{ $variation->variations_value }}" class="{{ $active }}" data-price="{{ $variation->variations_cost }}"><a>{{ $variation->variations_value }}</a></li>
+                                    @endif
                                     @endforeach
                                 </ul>
                             </div>
@@ -140,10 +140,17 @@
                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                                     <li><a href="#"><i class="fa fa-rss"></i></a></li>
                                 </ul>
-                                <form class="d-inline-block">
-                                    <button class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
-                                </form>
+                                @auth
+                                <button class="wishlist-btn" onclick="addToWishlist()"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
+                                @endauth
+                                @guest
+                                <button class="wishlist-btn" data-toggle="modal" data-target="#nologinaddtowishlist"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
+                                @endguest
+
                             </div>
+                            @auth
+                            <div id="retmsg"></div>
+                            @endauth
                         </div>
                     </div>
                 </div>

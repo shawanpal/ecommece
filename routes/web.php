@@ -24,3 +24,4 @@ Route::post('/delete-wishproduct', 'FrontendControllers\WishlistController@delet
 Route::post('/cart-wishproduct', 'FrontendControllers\WishlistController@cartWishproduct');
 Route::get('/shop/product/{alias}', 'FrontendControllers\ProductController@singleProduct');
 Route::post('/add-to-cart', 'FrontendControllers\ProductController@addToCart');
+Route::post('/add-to-wishlist', 'FrontendControllers\ProductController@addToWishlist');
