@@ -25,3 +25,5 @@ Route::post('/cart-wishproduct', 'FrontendControllers\WishlistController@cartWis
 Route::get('/shop/product/{alias}', 'FrontendControllers\ProductController@singleProduct');
 Route::post('/add-to-cart', 'FrontendControllers\ProductController@addToCart');
 Route::post('/add-to-wishlist', 'FrontendControllers\ProductController@addToWishlist');
+Route::post('/add-to-cart-single', 'FrontendControllers\ProductController@addToCartSingle');
+Route::post('/add-to-wishlist-single', 'FrontendControllers\ProductController@addToWishlistSingle');

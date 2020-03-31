@@ -7,14 +7,14 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="page-title">
-                    <h2>product</h2>
+                    <h2>{{ $product->title }}</h2>
                 </div>
             </div>
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">product</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $product->title }}</li>
                     </ol>
                 </nav>
             </div>
@@ -61,8 +61,13 @@
                         @endif
                         @php 
                         $variations = getProductData($product->id , 'variations');
+                        @endphp
+                        @if(!empty($variations))
+                        @php
                         $variations = json_decode($variations);
                         @endphp
+                        @endif
+                        @if(!empty($variations))
                         <ul class="color-variant">
                             @foreach ($variations as $variation)
                             @if($variation->variations_id == 1)
@@ -77,8 +82,9 @@
                             @endif
                             @endforeach
                         </ul>
+                        @endif
                         <div class="product-description border-product">
-                            <h6 class="product-title size-text">select size 
+                            <h6 class="product-title size-text">
                                 @if(getProductData($product->id , 'size_chart') != '')
                                 <span>
                                     <a href="#" data-toggle="modal" data-target="#sizemodal">size chart</a>
@@ -98,6 +104,8 @@
                                 </div>
                             </div>
                             @endif
+                            @if(!empty($variations))
+                            <h6 class="product-title size-text">select size </h6>
                             <div class="size-box">
                                 <ul>
                                     @foreach ($variations as $variation)
@@ -113,6 +121,7 @@
                                     @endforeach
                                 </ul>
                             </div>
+                            @endif
                             <h6 class="product-title">quantity</h6>
                             <div class="qty-box">
                                 <div class="input-group"><span class="input-group-prepend"><button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="ti-angle-left"></i></button> </span>
@@ -134,11 +143,10 @@
                             <h6 class="product-title">share it</h6>
                             <div class="product-icon">
                                 <ul class="product-social">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://twitter.com/home?status={{ URL::current() }}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://pinterest.com/pin/create/button/?url={{ URL::current() }}&media=&description=" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ URL::current() }}&title=&summary=&source=" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                                 </ul>
                                 @auth
                                 <button class="wishlist-btn" onclick="addToWishlist()"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
@@ -243,7 +251,7 @@
 </section>
 <!-- product-tab ends -->
 
-
+@if(!empty($related_products))
 <!-- product section start -->
 <section class="section-b-space ratio_asos">
     <div class="container">
@@ -253,42 +261,59 @@
             </div>
         </div>
         <div class="row search-product">
+            @foreach($related_products as $related_product)
             <div class="col-xl-2 col-md-4 col-sm-6">
                 <div class="product-box">
                     <div class="img-wrapper">
+                        @php $imgs = json_decode($related_product->images); @endphp
+                        @if($imgs[0])
                         <div class="front">
-                            <a href="#"><img src="../assets/images/pro3/33.jpg"
-                                             class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                            <a href="{{ url('shop/product/'.$related_product->alias) }}"><img src="{{ url('public/assets/images/products/'.$imgs[0]) }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
                         </div>
+                        @endif
+                        @if($imgs[1])
                         <div class="back">
-                            <a href="#"><img src="../assets/images/pro3/34.jpg"
-                                             class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                            <a href="{{ url('shop/product/'.$related_product->alias) }}"><img src="{{ url('public/assets/images/products/'.$imgs[1]) }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
                         </div>
+                        @endif
                         <div class="cart-info cart-wrap">
-                            <button data-toggle="modal" data-target="#addtocart" title="Add to cart"><i
-                                    class="ti-shopping-cart"></i></button> <a href="javascript:void(0)"
-                                                                      title="Add to Wishlist"><i class="ti-heart" aria-hidden="true"></i></a> <a href="#"
-                                                                                                       data-toggle="modal" data-target="#quick-view" title="Quick View"><i
-                                    class="ti-search" aria-hidden="true"></i></a> <a href="compare.html"
-                                                                             title="Compare"><i class="ti-reload" aria-hidden="true"></i></a></div>
+                            <a href="javascript:void(0)" onclick="addToCartSingle('{{Crypt::encryptString($related_product->id) }}')">
+                                <i class="ti-shopping-cart"></i>
+                            </a>
+                            @auth
+                            <a href="javascript:void(0)" onclick="addToWishlistSingle('{{Crypt::encryptString($related_product->id) }}')">
+                                <i class="ti-heart" aria-hidden="true"></i>
+                            </a>
+                            @endauth
+                            @guest
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#nologinaddtowishlist">
+                                <i class="ti-heart" aria-hidden="true"></i>
+                            </a>
+                            @endguest
+                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                <i class="ti-search" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="product-detail">
                         <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
                                 class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                        <a href="product-page(no-sidebar).html">
-                            <h6>Slim Fit Cotton Shirt</h6>
+                        <a href="{{ url('shop/product/'.$related_product->alias) }}">
+                            <h6>{{ $related_product->title }}</h6>
                         </a>
-                        <h4>$500.00</h4>
-                        <ul class="color-variant">
-                            <li class="bg-light0"></li>
-                            <li class="bg-light1"></li>
-                            <li class="bg-light2"></li>
-                        </ul>
+                        @if($related_product->sale_price != '')
+                        <h5><del>{{ getSiteData('site_currency').$related_product->regular_price }}</del></h5>
+                        <h4>{{ getSiteData('site_currency').$related_product->sale_price }}</h4>
+                        @else
+                        <h4>{{ getSiteData('site_currency').$related_product->regular_price }}</h4>
+                        @endif
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>
 <!-- product section end -->
+@endif
 @endsection
