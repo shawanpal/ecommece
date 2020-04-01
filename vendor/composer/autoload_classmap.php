@@ -34,6 +34,7 @@ return array(
     'App\\Providers\\HelperServiceProvider' => $baseDir . '/app/Providers/HelperServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Site_detail' => $baseDir . '/app/Site_detail.php',
+    'App\\Slider' => $baseDir . '/app/Slider.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\Wishlist' => $baseDir . '/app/Wishlist.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',

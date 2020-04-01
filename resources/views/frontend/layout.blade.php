@@ -401,19 +401,19 @@
         <!-- Theme js-->
         <script src="{{ url('public/assets/js/script.js') }}"></script>
         <script>
-                                                        $(window).on('load', function () {
-                                                            setTimeout(function () {
-                                                                $('#exampleModal').modal('show');
-                                                            }, 2500);
-                                                        });
+            $(window).on('load', function () {
+                setTimeout(function () {
+                    $('#exampleModal').modal('show');
+                }, 2500);
+            });
 
-                                                        function openSearch() {
-                                                            document.getElementById("search-overlay").style.display = "block";
-                                                        }
+            function openSearch() {
+                document.getElementById("search-overlay").style.display = "block";
+            }
 
-                                                        function closeSearch() {
-                                                            document.getElementById("search-overlay").style.display = "none";
-                                                        }
+            function closeSearch() {
+                document.getElementById("search-overlay").style.display = "none";
+            }
         </script>
     </body>
 

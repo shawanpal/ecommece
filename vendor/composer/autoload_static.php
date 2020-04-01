@@ -484,6 +484,7 @@ class ComposerStaticInit152ce5a13261d221230ec8016fbe3b37
         'App\\Providers\\HelperServiceProvider' => __DIR__ . '/../..' . '/app/Providers/HelperServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Site_detail' => __DIR__ . '/../..' . '/app/Site_detail.php',
+        'App\\Slider' => __DIR__ . '/../..' . '/app/Slider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Wishlist' => __DIR__ . '/../..' . '/app/Wishlist.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
