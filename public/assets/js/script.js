@@ -1180,85 +1180,85 @@
      18.Add to cart
      ==========================*/
     /* $('.product-box button .ti-shopping-cart').on('click', function () {
-        $.notify({
-            icon: 'fa fa-check',
-            title: 'Success!',
-            message: 'Item Successfully added to your cart'
-        }, {
-            element: 'body',
-            position: null,
-            type: "success",
-            allow_dismiss: true,
-            newest_on_top: false,
-            showProgressbar: true,
-            placement: {
-                from: "top",
-                align: "right"
-            },
-            offset: 20,
-            spacing: 10,
-            z_index: 1031,
-            delay: 5000,
-            animate: {
-                enter: 'animated fadeInDown',
-                exit: 'animated fadeOutUp'
-            },
-            icon_type: 'class',
-            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-                    '<span data-notify="icon"></span> ' +
-                    '<span data-notify="title">{1}</span> ' +
-                    '<span data-notify="message">{2}</span>' +
-                    '<div class="progress" data-notify="progressbar">' +
-                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-                    '</div>' +
-                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
-                    '</div>'
-        });
-    }); */
+     $.notify({
+     icon: 'fa fa-check',
+     title: 'Success!',
+     message: 'Item Successfully added to your cart'
+     }, {
+     element: 'body',
+     position: null,
+     type: "success",
+     allow_dismiss: true,
+     newest_on_top: false,
+     showProgressbar: true,
+     placement: {
+     from: "top",
+     align: "right"
+     },
+     offset: 20,
+     spacing: 10,
+     z_index: 1031,
+     delay: 5000,
+     animate: {
+     enter: 'animated fadeInDown',
+     exit: 'animated fadeOutUp'
+     },
+     icon_type: 'class',
+     template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+     '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+     '<span data-notify="icon"></span> ' +
+     '<span data-notify="title">{1}</span> ' +
+     '<span data-notify="message">{2}</span>' +
+     '<div class="progress" data-notify="progressbar">' +
+     '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+     '</div>' +
+     '<a href="{3}" target="{4}" data-notify="url"></a>' +
+     '</div>'
+     });
+     }); */
 
 
     /*=====================
      19.Add to wishlist
      ==========================*/
     /* $('.product-box a .ti-heart , .product-box a .fa-heart').on('click', function () {
-
-        $.notify({
-            icon: 'fa fa-check',
-            title: 'Success!',
-            message: 'Item Successfully added in wishlist'
-        }, {
-            element: 'body',
-            position: null,
-            type: "info",
-            allow_dismiss: true,
-            newest_on_top: false,
-            showProgressbar: true,
-            placement: {
-                from: "top",
-                align: "right"
-            },
-            offset: 20,
-            spacing: 10,
-            z_index: 1031,
-            delay: 5000,
-            animate: {
-                enter: 'animated fadeInDown',
-                exit: 'animated fadeOutUp'
-            },
-            icon_type: 'class',
-            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-                    '<span data-notify="icon"></span> ' +
-                    '<span data-notify="title">{1}</span> ' +
-                    '<span data-notify="message">{2}</span>' +
-                    '<div class="progress" data-notify="progressbar">' +
-                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-                    '</div>' +
-                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
-                    '</div>'
-        });
-    }); */
+     
+     $.notify({
+     icon: 'fa fa-check',
+     title: 'Success!',
+     message: 'Item Successfully added in wishlist'
+     }, {
+     element: 'body',
+     position: null,
+     type: "info",
+     allow_dismiss: true,
+     newest_on_top: false,
+     showProgressbar: true,
+     placement: {
+     from: "top",
+     align: "right"
+     },
+     offset: 20,
+     spacing: 10,
+     z_index: 1031,
+     delay: 5000,
+     animate: {
+     enter: 'animated fadeInDown',
+     exit: 'animated fadeOutUp'
+     },
+     icon_type: 'class',
+     template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+     '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+     '<span data-notify="icon"></span> ' +
+     '<span data-notify="title">{1}</span> ' +
+     '<span data-notify="message">{2}</span>' +
+     '<div class="progress" data-notify="progressbar">' +
+     '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+     '</div>' +
+     '<a href="{3}" target="{4}" data-notify="url"></a>' +
+     '</div>'
+     });
+     }); */
 
 
     /*=====================
@@ -1426,13 +1426,13 @@ $(function () {
             }
         }
     });
-    
-    $('.tab-product').click(function(){
+
+    $('.tab-product').click(function () {
         var id = $(this).data('id');
         $('.tab-content').removeClass('active');
-        $('.tab-content').css('display','none');
-        $('#'+id).css('display','block');
-        $('#'+id).addClass('active');
+        $('.tab-content').css('display', 'none');
+        $('#' + id).css('display', 'block');
+        $('#' + id).addClass('active');
     })
 });
 
@@ -1566,7 +1566,7 @@ function addToWishlist() {
 }
 var baseUrl = "http://localhost/laravelseven";
 function addToCartSingle(encID) {
-    
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1583,8 +1583,8 @@ function addToCartSingle(encID) {
     });
 }
 
-function addToWishlistSingle(encID){
-    
+function addToWishlistSingle(encID) {
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1600,5 +1600,22 @@ function addToWishlistSingle(encID){
             }
         }
     });
-    
+
+}
+
+function quickView(encID) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: baseUrl + '/quick-view',
+        data: {'encID': encID},
+        success: function (data) {
+            $('#quick-view').modal('show');
+            $('#quick-view-content').html(data);
+        }
+    });
 }

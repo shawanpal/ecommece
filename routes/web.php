@@ -27,3 +27,4 @@ Route::post('/add-to-cart', 'FrontendControllers\ProductController@addToCart');
 Route::post('/add-to-wishlist', 'FrontendControllers\ProductController@addToWishlist');
 Route::post('/add-to-cart-single', 'FrontendControllers\ProductController@addToCartSingle');
 Route::post('/add-to-wishlist-single', 'FrontendControllers\ProductController@addToWishlistSingle');
+Route::post('/quick-view', 'FrontendControllers\ProductController@quickView');

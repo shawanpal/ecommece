@@ -112,7 +112,7 @@
                                     <i class="ti-heart" aria-hidden="true"></i>
                                 </a>
                                 @endguest
-                                <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                <a href="javascript:void(0)" onclick="quickView('{{Crypt::encryptString($collection_product->id) }}')">
                                     <i class="ti-search" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -419,7 +419,7 @@
                                 <p>{{ $blog->title }}</p>
                             </a>
                             <hr class="style1">
-                            <h6>by: {{ get_author_name($blog->post_by) }} , 2 Comment</h6>
+                            <h6>by: {{ get_author_name($blog->post_by) }} , {{ get_post_no_comment($blog->id) }} Comment</h6>
                         </div>
                     </div>
                     @endforeach

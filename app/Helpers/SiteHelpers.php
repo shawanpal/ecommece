@@ -5,6 +5,7 @@ use App\Site_detail as SiteDetails;
 use App\Attribute;
 use App\Category;
 use App\User;
+use App\Comment;
 
 if (!function_exists('getSiteData')) {
 
@@ -69,12 +70,23 @@ if (!function_exists('product_rating')) {
 
 }
 if (!function_exists('get_author_name')) {
-    
-    function get_author_name($id){
+
+    function get_author_name($id) {
         $author = User::where(['id' => $id])
                 ->first();
-        if(!empty($author)){
-            return $author->first_name.' '.$author->last_name;
+        if (!empty($author)) {
+            return $author->first_name . ' ' . $author->last_name;
         }
     }
+
+}
+
+if (!function_exists('get_post_no_comment')) {
+
+    function get_post_no_comment($postid) {
+        $comments = Comment::where(['post_id' => $postid])
+                ->get();
+        return count($comments);
+    }
+
 }
