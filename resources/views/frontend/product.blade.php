@@ -266,12 +266,12 @@
                 <div class="product-box">
                     <div class="img-wrapper">
                         @php $imgs = json_decode($related_product->images); @endphp
-                        @if($imgs[0])
+                        @if(array_key_exists(0,$imgs))
                         <div class="front">
                             <a href="{{ url('shop/product/'.$related_product->alias) }}"><img src="{{ url('public/assets/images/products/'.$imgs[0]) }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
                         </div>
                         @endif
-                        @if($imgs[1])
+                        @if(array_key_exists(1,$imgs))
                         <div class="back">
                             <a href="{{ url('shop/product/'.$related_product->alias) }}"><img src="{{ url('public/assets/images/products/'.$imgs[1]) }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
                         </div>
@@ -296,8 +296,7 @@
                         </div>
                     </div>
                     <div class="product-detail">
-                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
+                        <div class="rating">{!! product_rating($related_product->id) !!}</div>
                         <a href="{{ url('shop/product/'.$related_product->alias) }}">
                             <h6>{{ $related_product->title }}</h6>
                         </a>

@@ -1426,6 +1426,14 @@ $(function () {
             }
         }
     });
+    
+    $('.tab-product').click(function(){
+        var id = $(this).data('id');
+        $('.tab-content').removeClass('active');
+        $('.tab-content').css('display','none');
+        $('#'+id).css('display','block');
+        $('#'+id).addClass('active');
+    })
 });
 
 /*=====================

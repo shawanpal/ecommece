@@ -20,29 +20,30 @@ class ProductController extends Controller {
 
         $product_category = Attribute::where(["product_id" => $data['product']->id, "name" => "categories"])
                 ->first();
-        $product_category = json_decode($product_category->value);
+        if (!empty($product_category)) {
+            $product_category = json_decode($product_category->value);
 
-        $get_all_categories = Attribute::where(["name" => "categories"])
-                ->get();
-        $related_array = [];
-        foreach ($get_all_categories as $get_all_category) {
-            $categories = json_decode($get_all_category->value);
-            if (in_array($product_category[0], $categories)) {
-                array_push($related_array, $get_all_category->product_id);
+            $get_all_categories = Attribute::where(["name" => "categories"])
+                    ->get();
+            $related_array = [];
+            foreach ($get_all_categories as $get_all_category) {
+                $categories = json_decode($get_all_category->value);
+                if (in_array($product_category[0], $categories)) {
+                    array_push($related_array, $get_all_category->product_id);
+                }
             }
-        }
-        $data['related_products'] = [];
+            $data['related_products'] = [];
 
-        foreach ($related_array as $relatedp) {
-            if ($relatedp != $data['product']->id) {
-                $product = Product::where(['id' => $relatedp, 'is_active' => 1, 'is_deleted' => 0])
-                        ->first();
-                if (!empty($product)) {
-                    array_push($data['related_products'], $product);
+            foreach ($related_array as $relatedp) {
+                if ($relatedp != $data['product']->id) {
+                    $product = Product::where(['id' => $relatedp, 'is_active' => 1, 'is_deleted' => 0])
+                            ->first();
+                    if (!empty($product)) {
+                        array_push($data['related_products'], $product);
+                    }
                 }
             }
         }
-
         if (empty($data['product'])) {
             return view('frontend.404');
         } else {
