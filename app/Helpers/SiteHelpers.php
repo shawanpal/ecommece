@@ -84,7 +84,7 @@ if (!function_exists('get_author_name')) {
 if (!function_exists('get_post_no_comment')) {
 
     function get_post_no_comment($postid) {
-        $comments = Comment::where(['post_id' => $postid])
+        $comments = Comment::where(['post_id' => $postid, 'is_approved' => 1])
                 ->get();
         return count($comments);
     }

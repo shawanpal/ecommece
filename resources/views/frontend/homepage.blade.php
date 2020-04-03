@@ -414,7 +414,7 @@
                             </div>
                         </a>
                         <div class="blog-details">
-                            <h4>25 January 2018</h4>
+                            <h4>{{ date('d F Y', strtotime($blog->created_at)) }}</h4>
                             <a href="{{ url('/blog/'.$blog->alias) }}">
                                 <p>{{ $blog->title }}</p>
                             </a>

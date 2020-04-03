@@ -192,44 +192,66 @@ class ProductController extends Controller {
                             <div class="col-lg-6 rtl-text">
                                 <div class="product-right">
                                     <h2>' . $product->title . '</h2>';
-                                    if ($product->sale_price != '') {
-                                        $modal_body .= '<h4><del>'.getSiteData('site_currency').$product->regular_price.'</del></h4>';
-                                        $modal_body .= '<h3>'.getSiteData('site_currency').$product->sale_price.'</h3>';
-                                    }else{
-                                        $modal_body .= '<h3>'.getSiteData('site_currency').$product->regular_price.'</h3>';
-                                    }
-                    $modal_body .= '<ul class="color-variant">
-                                        <li class="bg-light0"></li>
-                                        <li class="bg-light1"></li>
-                                        <li class="bg-light2"></li>
-                                    </ul>
-                                    <div class="border-product">
-                                        <h6 class="product-title">product details</h6>
-                                        <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
-                                    </div>
-                                    <div class="product-description border-product">
-                                        <div class="size-box">
-                                            <ul>
-                                                <li class="active"><a href="#">s</a></li>
-                                                <li><a href="#">m</a></li>
-                                                <li><a href="#">l</a></li>
-                                                <li><a href="#">xl</a></li>
-                                            </ul>
-                                        </div>
-                                        <h6 class="product-title">quantity</h6>
-                                        <div class="qty-box">
-                                            <div class="input-group"><span class="input-group-prepend"><button type="button"
-                                                                                                               class="btn quantity-left-minus" data-type="minus" data-field=""><i
-                                                            class="ti-angle-left"></i></button> </span>
-                                                <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button"
-                                                                                                                                                                          class="btn quantity-right-plus" data-type="plus" data-field=""><i
-                                                            class="ti-angle-right"></i></button></span></div>
-                                        </div>
-                                    </div>
-                                    <div class="product-buttons"><a href="#" class="btn btn-solid">add to cart</a> <a href="#" class="btn btn-solid">view detail</a></div>
-                                </div>
-                            </div>
-                        </div>';
+        if ($product->sale_price != '') {
+            $modal_body .= '<h4><del>' . getSiteData('site_currency') . $product->regular_price . '</del></h4>';
+            $modal_body .= '<h3>' . getSiteData('site_currency') . $product->sale_price . '</h3>';
+        } else {
+            $modal_body .= '<h3>' . getSiteData('site_currency') . $product->regular_price . '</h3>';
+        }
+        $variations = getProductData($product->id, 'variations');
+        if (!empty($variations)) {
+            $variations = json_decode($variations);
+            $modal_body .= '<ul class="color-variant">';
+            foreach ($variations as $variation) {
+                if ($variation->variations_id == 1) {
+                    if ($variation->variations_cost == 0) {
+                        $active = 'selected';
+                        $modal_body .= '<input type="hidden" name="variation_color" value="' . $variation->variations_value . '">';
+                    } else {
+                        $active = '';
+                    }
+                    $modal_body .= ' <li id="' . $variation->variations_value . '" class="' . $active . '" style="background: ' . $variation->variations_value . '" data-price="' . $variation->variations_cost . '"></li>';
+                }
+            }
+            $modal_body .= '</ul>';
+        }
+        if (getProductData($product->id, 'short_description') != '') {
+            $modal_body .= '<div class="border-product">
+                            <h6 class="product-title">product details</h6>';
+                            getProductData($product->id , 'short_description');
+            $modal_body .= '</div>';
+        }
+        $modal_body .= ' <div class="product-description border-product">
+                            <div class="size-box">';
+        if (!empty($variations)) {
+            $modal_body .= '<ul>';
+            foreach ($variations as $variation) {
+                if ($variation->variations_id == 2) {
+                    if ($variation->variations_cost == 0) {
+                        $active = 'active';
+                        $modal_body .= '<input type="hidden" name="variation_size" value="' . $variation->variations_value . '">';
+                    } else {
+                        $active = '';
+                    }
+                    $modal_body .= ' <li id="' . $variation->variations_value . '" class="' . $active . '" data-price="' . $variation->variations_cost . '"><a>' . $variation->variations_value . '</a></li>';
+                }
+            }
+
+            $modal_body .= '</ul>';
+        }
+        $modal_body .= ' </div>
+                        <h6 class="product-title">quantity</h6>
+                        <div class="qty-box">
+                            <div class="input-group"><span class="input-group-prepend"><button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="ti-angle-left"></i></button> </span>
+                            <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span></div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="enc_id" value="'.Crypt::encryptString($product->id).'">
+                    <input type="hidden" name="base_url" value="'. url('/').'">
+                    <div class="product-buttons"><a onclick="addToCart()" class="btn btn-solid">add to cart</a> <a href="'.product_url($product->alias).'" class="btn btn-solid">view detail</a></div>
+                </div>
+            </div>
+        </div>';
         echo $modal_body;
         die();
     }

@@ -2181,7 +2181,9 @@ header.marketplace .top-header .header-dropdown li a i {
 .blog-details {
     text-align: center;
     padding-left: 15px;
-    padding-right: 15px; }
+    padding-right: 15px; 
+    padding-bottom: 30px;
+}
 .blog-details h4 {
     color: var(--theme-deafult);
     margin-top: 25px;
@@ -8010,10 +8012,13 @@ footer.footer-christmas .social-white i:hover {
     color: #333333;
     font-size: 16px;
     font-weight: 700; }
+.blog-detail-page .blog-contact .theme-form label.error{
+    color:#f00 !important;
+}
 
 .blog-detail-page .blog-contact .theme-form input,
 .blog-detail-page .blog-contact .theme-form textarea {
-    border-color: #dddddd;
+    
     font-size: 14px;
     padding: 17px 25px;
     margin-bottom: 30px; }

@@ -28,3 +28,5 @@ Route::post('/add-to-wishlist', 'FrontendControllers\ProductController@addToWish
 Route::post('/add-to-cart-single', 'FrontendControllers\ProductController@addToCartSingle');
 Route::post('/add-to-wishlist-single', 'FrontendControllers\ProductController@addToWishlistSingle');
 Route::post('/quick-view', 'FrontendControllers\ProductController@quickView');
+Route::get('/blog/{alias}', 'FrontendControllers\BlogController@blogDetails');
+Route::post('/post-comment', 'FrontendControllers\BlogController@postComment');

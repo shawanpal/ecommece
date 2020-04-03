@@ -1426,6 +1426,22 @@ $(function () {
             }
         }
     });
+    
+    $("#comment-form").validate({
+        rules: {
+            name: "required",
+            email: {
+                required: true,
+                email: true
+            },
+            comment: "required"
+        },
+        messages: {
+            name: "Please enter your name",
+            email: "Please enter a valid email address",
+            comment: "Please enter your comment"
+        }
+    });
 
     $('.tab-product').click(function () {
         var id = $(this).data('id');
@@ -1433,7 +1449,7 @@ $(function () {
         $('.tab-content').css('display', 'none');
         $('#' + id).css('display', 'block');
         $('#' + id).addClass('active');
-    })
+    });
 });
 
 /*=====================

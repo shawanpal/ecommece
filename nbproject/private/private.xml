@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/xampp/htdocs/laravelseven/app/Http/Controllers/FrontendControllers/ProductController.php</file>
             <file>file:/C:/xampp/htdocs/laravelseven/app/Helpers/SiteHelpers.php</file>
+            <file>file:/C:/xampp/htdocs/laravelseven/public/assets/js/script.js</file>
             <file>file:/C:/xampp/htdocs/laravelseven/routes/web.php</file>
+            <file>file:/C:/xampp/htdocs/laravelseven/resources/views/frontend/product.blade.php</file>
             <file>file:/C:/xampp/htdocs/laravelseven/app/Http/Controllers/FrontendControllers/HomeController.php</file>
             <file>file:/C:/xampp/htdocs/laravelseven/resources/views/frontend/homepage.blade.php</file>
         </group>
