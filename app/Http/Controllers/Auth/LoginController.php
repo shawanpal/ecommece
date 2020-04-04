@@ -27,9 +27,28 @@ class LoginController extends Controller {
             $email = $request->input('email');
             $password = $request->input('password');
             $credentials = array('email' => $email, 'password' => $password, 'is_active' => 1, 'is_deleted' => 0);
-            
+
             if (Auth::attempt($credentials)) {
                 return Redirect('/');
+            } else {
+                return Redirect::back()->with('error', 'Wrong Credientials!');
+            }
+        }
+    }
+
+    public function adminLogin(Request $request) {
+        $validator = $this->validator($request->input());
+        if ($validator->fails()) {
+            return Redirect::back()
+                            ->withErrors($validator)
+                            ->withInput();
+        } else {
+            $email = $request->input('email');
+            $password = $request->input('password');
+            $credentials = array('role' => 1, 'email' => $email, 'password' => $password, 'is_active' => 1, 'is_deleted' => 0);
+
+            if (Auth::attempt($credentials)) {
+                return Redirect('/site-admin/dashboard');
             } else {
                 return Redirect::back()->with('error', 'Wrong Credientials!');
             }

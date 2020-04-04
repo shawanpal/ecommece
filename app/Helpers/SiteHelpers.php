@@ -62,6 +62,14 @@ if (!function_exists('product_url')) {
 
 }
 
+if (!function_exists('admin_url')) {
+
+    function admin_url($alias) {
+        return URL('/site-admin/' . $alias);
+    }
+
+}
+
 if (!function_exists('product_rating')) {
 
     function product_rating($id) {
