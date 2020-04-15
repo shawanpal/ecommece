@@ -21,14 +21,11 @@
         <!-- Flag icon-->
         <link rel="stylesheet" type="text/css" href="{{ url('public/assets/css/flag-icon.css') }}">
 
+        <!-- Datatables css-->
+        <link rel="stylesheet" type="text/css" href="{{ url('public/assets/css/datatables.css') }}">
+
         <!-- ico-font-->
         <link rel="stylesheet" type="text/css" href="{{ url('public/assets/css/icofont.css') }}">
-
-        <!-- Prism css-->
-        <link rel="stylesheet" type="text/css" href="{{ url('public/assets/css/prism.css') }}">
-
-        <!-- Chartist css -->
-        <link rel="stylesheet" type="text/css" href="{{ url('public/assets/css/chartist.css') }}">
 
         <!-- Bootstrap css-->
         <link rel="stylesheet" type="text/css" href="{{ url('public/assets/css/bootstrap.css') }}">
@@ -101,14 +98,15 @@
         <!--sparkline chart js-->
         <script src="{{ url('public/assets/js/chart/sparkline/sparkline.js') }}"></script>
 
-        <!--Customizer admin-->
-        <script src="{{ url('public/assets/js/admin-customizer.js') }}"></script>
-
         <!--dashboard custom js-->
         <script src="{{ url('public/assets/js/dashboard/default.js') }}"></script>
 
         <!--right sidebar js-->
         <script src="{{ url('public/assets/js/chat-menu.js') }}"></script>
+
+        <!-- Datatable js-->
+        <script src="{{ url('public/assets/js/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ url('public/assets/js/datatables/custom-basic.js') }}"></script>
 
         <!--height equal js-->
         <script src="{{ url('public/assets/js/height-equal.js') }}"></script>

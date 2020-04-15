@@ -38,4 +38,6 @@ Route::get('/site-admin', 'BackendControllers\AuthController@login')->name('logi
 Route::post('/site-admin/admin-login', 'Auth\LoginController@adminLogin');
 Route::group(['prefix' => 'site-admin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', 'BackendControllers\DashboardController@dashboard');
+    Route::get('/product-list', 'BackendControllers\ProductController@productList');
+    Route::get('/edit-product/{enc}', 'BackendControllers\ProductController@editProduct');
 });
